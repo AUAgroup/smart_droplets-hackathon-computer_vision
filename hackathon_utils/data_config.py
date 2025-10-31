@@ -1,0 +1,12 @@
+DATASET_NAME = "smart_droplets-scab_hackathon-2_classes-checked-patched_512-splits"
+TRAIN_IMG_DIR = f'./{DATASET_NAME}/train/images'
+TRAIN_MASK_DIR = f'./{DATASET_NAME}/train/masks'
+VAL_IMG_DIR = f'./{DATASET_NAME}/val/images'
+VAL_MASK_DIR = f'./{DATASET_NAME}/val/masks'
+TEST_IMG_DIR = f'./{DATASET_NAME}/test/images'
+RESULTS_IMG_DIR = f'./{DATASET_NAME}/test/pred_masks'
+IMAGE_SIZE = 512
+PATCH_SIZE = 512
+NUM_CLASSES = 2
+PROBLEMATIC_CLASS = 1
+INCLUDES_VAL = True
