@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 import os
+from hackathon_utils.training_config import *
 
 def collect_two_class_samples(
     dataloader,
@@ -66,6 +67,7 @@ def collect_two_class_samples(
 def visualize_segmentation(
     model,
     dataloader,
+    epoch,
     device=None,
     n=6,
     overlay=False,
@@ -96,7 +98,7 @@ def visualize_segmentation(
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.to(device)
 
-    images, masks = collect_two_class_samples(val_loader, device, n_needed=6, max_passes=5)
+    images, masks = collect_two_class_samples(dataloader, device, n_needed=6, max_passes=5)
 
     with torch.no_grad():
         logits = model(images)
@@ -165,8 +167,8 @@ def visualize_segmentation(
         ax.axis("off")
 
     plt.tight_layout()
-    plt.show()
-    #plt.savefig(os.path.join(output_dir, f"{model_name}.png"), dpi=300, bbox_inches='tight')
+    #plt.show()
+    plt.savefig(os.path.join(OUTPUT_FOLDER_NAME, f"{epoch}.png"), dpi=300, bbox_inches='tight')
     plt.close()
     
     # restore training state

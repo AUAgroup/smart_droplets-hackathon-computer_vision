@@ -63,3 +63,84 @@ def segment_images(model, input_folder, output_folder, device=None, threshold=0.
             mask_img.save(os.path.join(output_folder, f"{base_name}.png"))
 
     print(f"✅ Saved predicted masks in: {output_folder}")
+
+import os
+import torch
+import numpy as np
+from PIL import Image
+from torchmetrics.functional import jaccard_index
+
+
+def evaluate_iou(true_dir, pred_dir, num_classes=2, device=None):
+    """
+    Computes mean IoU (mIoU) and IoU per class between true and predicted masks.
+
+    Args:
+        true_dir (str): Folder with ground-truth masks.
+        pred_dir (str): Folder with predicted masks.
+        num_classes (int): Number of classes (e.g., 2 for binary).
+        device (torch.device, optional): Computation device.
+
+    Returns:
+        mean_iou (float): Mean IoU across all classes.
+        iou_per_class (dict): IoU per class {class_idx: value}.
+    """
+    if device is None:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    # Collect and sort mask file paths
+    true_files = sorted([
+        f for f in os.listdir(true_dir)
+        if f.lower().endswith((".png", ".jpg", ".jpeg", ".tif"))
+    ])
+    pred_files = sorted([
+        f for f in os.listdir(pred_dir)
+        if f.lower().endswith((".png", ".jpg", ".jpeg", ".tif"))
+    ])
+    assert len(true_files) == len(pred_files), "Mismatch between GT and predicted masks!"
+
+    preds, targets = [], []
+    for gt_name, pr_name in zip(true_files, pred_files):
+        gt_path = os.path.join(true_dir, gt_name)
+        pr_path = os.path.join(pred_dir, pr_name)
+
+        gt = np.array(Image.open(gt_path))
+        pr = np.array(Image.open(pr_path))
+
+        # Normalize (handle 0/255 masks)
+        if gt.max() > 1:
+            gt = (gt > 127).astype(np.uint8)
+        if pr.max() > 1:
+            pr = (pr > 127).astype(np.uint8)
+
+        preds.append(torch.tensor(pr, dtype=torch.int64))
+        targets.append(torch.tensor(gt, dtype=torch.int64))
+
+    preds = torch.stack(preds).to(device)
+    targets = torch.stack(targets).to(device)
+
+    # Compute per-class IoU
+    iou_per_class_tensor = jaccard_index(
+        preds=preds,
+        target=targets,
+        task="multiclass",     # even for binary (0 and 1)
+        num_classes=num_classes,
+        average="none"         # keep per-class scores
+    )
+
+    # Handle NaN (class not present)
+    iou_per_class_tensor = torch.nan_to_num(iou_per_class_tensor, nan=0.0)
+
+    # Mean IoU and dictionary
+    mean_iou = float(iou_per_class_tensor.mean().item())
+    iou_per_class = {
+        cls: round(float(iou_per_class_tensor[cls].item()), 4)
+        for cls in range(num_classes)
+    }
+
+    print("✅ Evaluation complete")
+    print(f"Mean IoU: {mean_iou:.4f}")
+    for cls, val in iou_per_class.items():
+        print(f"Class {cls}: IoU = {val:.4f}")
+
+    return mean_iou, iou_per_class

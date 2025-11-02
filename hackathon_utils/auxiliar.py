@@ -4,7 +4,7 @@ import logging
 from collections import defaultdict
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
+logger.addHandler(logging.NullHandler()) 
 
 def count_params(m):
     total = sum(p.numel() for p in m.parameters())
@@ -22,6 +22,7 @@ def mean_values_by_key(list_of_dicts):
         A dictionary with keys from the original dictionaries and values as the
         mean of the corresponding float values.
     """
+    
     sum_values = defaultdict(float)
     count_values = defaultdict(int)
 
@@ -31,7 +32,7 @@ def mean_values_by_key(list_of_dicts):
                 sum_values[key] += value
                 count_values[key] += 1
             else:
-                print(f"Warning: Skipping non-numeric key or non-float value: Key '{key}' (type: {type(key).__name__}), Value '{value}' (type: {type(value).__name__})")
+                logger.info(f"Warning: Skipping non-numeric key or non-float value: Key '{key}' (type: {type(key).__name__}), Value '{value}' (type: {type(value).__name__})")
 
     final_means = {}
     for key in sum_values:
@@ -50,6 +51,7 @@ def create_folder_if_not_exists(folder_path):
     Args:
         folder_path (str): The path to the folder to check/create.
     """
+    
     if not os.path.exists(folder_path):
         try:
             os.makedirs(folder_path)

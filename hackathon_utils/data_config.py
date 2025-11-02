@@ -5,6 +5,7 @@ VAL_IMG_DIR = f'./{DATASET_NAME}/val/images'
 VAL_MASK_DIR = f'./{DATASET_NAME}/val/masks'
 TEST_IMG_DIR = f'./{DATASET_NAME}/test/images'
 RESULTS_IMG_DIR = f'./{DATASET_NAME}/test/pred_masks'
+
 IMAGE_SIZE = 512
 PATCH_SIZE = 512
 NUM_CLASSES = 2

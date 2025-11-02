@@ -3,7 +3,12 @@ import logging
 import numpy as np
 import torch
 import torch.nn.functional as F
+from hackathon_utils.training_config import *
+from hackathon_utils.evaluation import evaluate
+from hackathon_utils.visualization import visualize_segmentation
 
+logger = logging.getLogger(__name__)
+#logger.addHandler(logging.NullHandler())
 
 def train_model(
     model,
@@ -12,6 +17,8 @@ def train_model(
     max_lr=1e-4,
     weight_decay=1e-4,
 ):
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    
     optimizer = torch.optim.AdamW(
         model.parameters(),
         lr=max_lr,
@@ -20,7 +27,6 @@ def train_model(
 
     best_weights = None
     best_val_loss = np.inf
-    best_specific_class_score = 0.0
     best_avg_jaccard_scores = -np.inf  # fixed typo & safer init for "maximize" metric
 
     patience = PATIENCE
@@ -80,7 +86,8 @@ def train_model(
 
         visualize_segmentation(
             model,
-            val_loader
+            val_loader,
+            epoch
         )
 
         # ---- early stopping condition (maximize mIoU; tie-break with lower val loss) ----
@@ -96,7 +103,6 @@ def train_model(
                 f"val_loss: {best_val_loss:.4f} → {val_loss:.4f})"
             )
             best_avg_jaccard_scores = val_avg_jaccard_scores
-            best_specific_class_score = val_avg_jaccard_per_class[PROBLEMATIC_CLASS]
             best_val_loss = val_loss
             best_weights = copy.deepcopy(model.state_dict())
             patience = PATIENCE
@@ -109,41 +115,6 @@ def train_model(
                 if best_weights is not None:
                     model.load_state_dict(best_weights)
 
-                best_train_loss, best_train_jaccard_score, best_train_jaccard_per_class = evaluate(
-                    model, train_loader
-                )
-                best_val_loss, best_val_jaccard_score, best_val_jaccard_per_class = evaluate(
-                    model, val_loader
-                )
-                return (
-                    best_train_loss,
-                    best_train_jaccard_score,
-                    best_val_loss,
-                    best_val_jaccard_score,
-                    best_epoch,
-                    losses,
-                    best_train_jaccard_per_class,
-                    best_val_jaccard_per_class,
-                )
-
     # after all epochs, ensure best weights are used (if any saved)
     if best_weights is not None:
         model.load_state_dict(best_weights)
-
-    best_train_loss, best_train_jaccard_score, best_train_jaccard_per_class = evaluate(
-        model, train_loader
-    )
-    best_val_loss, best_val_jaccard_score, best_val_jaccard_per_class = evaluate(
-        model, val_loader
-    )
-
-    return (
-        best_train_loss,
-        best_train_jaccard_score,
-        best_val_loss,
-        best_val_jaccard_score,
-        best_epoch,
-        losses,
-        best_train_jaccard_per_class,
-        best_val_jaccard_per_class,
-    )

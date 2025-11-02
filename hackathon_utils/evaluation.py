@@ -2,6 +2,10 @@ import torch
 import torch.nn.functional as F
 import numpy as np
 from torchmetrics.functional import jaccard_index
+from hackathon_utils.data_config import *
+from hackathon_utils.auxiliar import mean_values_by_key
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def multiclass_jaccard(
     pred: torch.Tensor,
@@ -28,6 +32,7 @@ def multiclass_jaccard(
         mean_iou (float): mean IoU over classes (excluding ignore_index if set).
         iou_per_class (dict[int, float]): per-class IoU.
     """
+    
     # Convert predictions to class indices if needed
     if from_logits:
         if pred.ndim != 4:
