@@ -13,6 +13,9 @@ vision—detecting apple scab symptoms at leaf/fruit level so the sprayer
 can make **precise, traceable, Green-Deal-friendly** decisions in the 
 field.
 
+![Scab Images](https://github-production-user-asset-6210df.s3.amazonaws.com/2207826/508886943-f95d6e27-eea9-45f1-a3df-914dfa3eb37b.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251103T100650Z&X-Amz-Expires=300&X-Amz-Signature=d9b3c783155f695912d13625f09702ea0aec5675292642d07d0aa4b18a072bd5&X-Amz-SignedHeaders=host)
+
+
 ---
 
 ## 1) Objectives
@@ -25,7 +28,7 @@ field.
 ---
 
 ## 2) Dataset & Classes
-
+- Link: https://drive.google.com/file/d/16FToB2SGx7J_9wz6jznJJlGMRvVZb6dc/view?usp=sharing
 * Images: RGB crop images of apple leaves/fruits in orchard conditions.
 * Masks: **binary** segmentation:
 
