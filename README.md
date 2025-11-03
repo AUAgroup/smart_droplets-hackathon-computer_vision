@@ -67,8 +67,74 @@ field.
 * A UNet-like model with `CrossEntropyLoss`.
 * Simple training loop and a basic inference script.
 * IoU evaluation on **val**.
+* Where to execute it?
+  - Google Colab: https://colab.research.google.com/
+  - Kaggle Notebooks: https://www.kaggle.com/code 
+  - Amazon SageMaker Studio Lab: https://aws.amazon.com/sagemaker/
+  - Paperspace Gradient: https://www.hyperstack.cloud/ 
+  - Microsoft Azure Notebooks: https://visualstudio.microsoft.com/vs/features/notebooks-at-microsoft/
 
 ![Output Example](https://drive.google.com/uc?export=download&id=16HaDGGDu2Z1y9XtlA7Zag-8d_I6VNtH6)
+
+-----
+
+#### 🚀 Project Setup and Data Preparation (Colab/Jupyter)
+
+This documentation outlines the steps required to clone the repository, install dependencies, and prepare the dataset for the computer vision project within a notebook environment.
+
+##### 1\. 📂 Clone the Repository
+
+Execute this shell command to clone the project repository from GitHub into your current environment.
+
+```bash
+!git clone https://github.com/AUAgroup/smart_droplets-hackathon-computer_vision
+```
+
+-----
+
+##### 2\. 📁 Navigate to the Project Directory
+
+Change the current working directory to the newly cloned repository folder. The magic command `%cd` is specific to IPython environments like Colab.
+
+```python
+%cd smart_droplets-hackathon-computer_vision
+```
+
+-----
+
+##### 3\. 📦 Install Dependencies
+
+Install all necessary Python packages listed in the `requirements.txt` file.
+
+```bash
+!pip install -r requirements.txt
+```
+
+-----
+
+##### 4\. 🔄 Restart the Runtime Session
+
+After installing packages, especially if they involve core libraries like PyTorch or TensorFlow, it is often **required to restart the runtime session** to ensure all modules are loaded correctly.
+
+**Action Required:** Go to the **Runtime** menu in Google Colab and select **"Restart session"** (or similar option in your environment).
+
+-----
+
+##### 5\. 🔓 Unzip the Dataset
+
+Execute the shell command to unzip the compressed dataset file. The path provided is typical for files uploaded or stored in the Colab `/content/` directory.
+
+```bash
+!unzip /content/smart_droplets-hackathon-computer_vision/smart_droplets-scab_hackathon-2_classes-checked-patched_512-splits.zip
+```
+
+-----
+
+##### 6\. 📝 Prepare the Main Script (`main.py`)
+
+The final step is to ensure the primary execution script is in place.
+
+**Action Required:** **Copy and paste the contents of the `main.py` file** (or any other primary script) into a new file named `main.py` within the `/content/smart_droplets-hackathon-computer_vision/` directory, or into a new code cell in your notebook, depending on your workflow.
 
 ---
 
