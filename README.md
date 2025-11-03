@@ -40,8 +40,8 @@ field.
   ```
   data/
     train/
-      images/   *.png|*.jpg
-      masks/    *_mask.png  (uint8, values {0,1})
+      images/   *.png|*.JPG
+      masks/    *.png  (uint8, values {0,1})
     val/
       images/
       masks/
