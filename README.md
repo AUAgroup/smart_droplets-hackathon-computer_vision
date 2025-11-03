@@ -1,4 +1,4 @@
-[# Smart Droplets Hackathon](https://drive.google.com/uc?export=download&id=1sUPDFDqDX32UXDGGsSS4KndhBJcPeM8E)
+![Smart Droplets Hackathon](https://drive.google.com/uc?export=download&id=1sUPDFDqDX32UXDGGsSS4KndhBJcPeM8E)
 
 ## Apple Scab Semantic Segmentation Challenge
 
