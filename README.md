@@ -2,6 +2,8 @@
 
 ## Apple Scab Semantic Segmentation Challenge
 
+![Annotated Scab Images](https://drive.google.com/uc?export=download&id=1FOck1_QzGyo1Emovvd8wWAJruQ6T19iV)
+
 ### 0) Motivation (why this matters)
 
 Conventional blanket spraying misuses pesticides and fertilizers, driving 
@@ -13,7 +15,7 @@ vision—detecting apple scab symptoms at leaf/fruit level so the sprayer
 can make **precise, traceable, Green-Deal-friendly** decisions in the 
 field.
 
-![Scab Images](https://github-production-user-asset-6210df.s3.amazonaws.com/2207826/508886943-f95d6e27-eea9-45f1-a3df-914dfa3eb37b.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20251103%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20251103T100650Z&X-Amz-Expires=300&X-Amz-Signature=d9b3c783155f695912d13625f09702ea0aec5675292642d07d0aa4b18a072bd5&X-Amz-SignedHeaders=host)
+
 
 
 ---
