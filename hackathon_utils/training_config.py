@@ -17,11 +17,13 @@ OUTPUT_FOLDER_NAME = f"./segmentation_evaluation-{DATASET_NAME}-{WEIGHTS_INITIAL
 # ---------------------------------------------------------------------
 
 # Total number of training epochs (complete passes through the dataset).
+# Try a larger number for potentially better results, but training time increases.
 NUM_EPOCHS = 10
 
 # Batch size for both training and validation dataloaders.
 # Determines how many samples are processed before gradient update.
-BATCH_SIZE = 8
+# Try to use the largest batch size that fits in GPU memory for (maybe) better results.
+BATCH_SIZE = 4
 
 # Early stopping patience: number of epochs to wait without improvement 
 # before halting training and restoring the best model weights.
@@ -33,13 +35,15 @@ PATIENCE = 10
 
 # Segmentation architecture used (supported by segmentation_models_pytorch or similar).
 # Examples: "unet", "unetplusplus", "deeplabv3", "segformer", etc.
-ARCHITECTURE_NAME = "unetplusplus"
+# More: https://smp.readthedocs.io/en/latest/models.html
+ARCHITECTURE_NAME = "unet"
 
 # Backbone network used for feature extraction (defined by timm library name).
 # "maxvit_tiny_tf_512.in1k" = MaxViT Tiny pretrained on ImageNet-1k at 512x512 input size.
-# Examples: "convnextv2_tiny.fcmae_ft_in22k_in1k_384, resnet34.a1_in1k"
+# Examples: "convnextv2_tiny.fcmae_ft_in22k_in1k_384", "resnet34.a1_in1k", "maxvit_tiny_tf_512.in1k"
+# More: https://smp.readthedocs.io/en/latest/encoders.html#
 # More: https://smp.readthedocs.io/en/latest/encoders_timm.html
-BACKBONE_NAME = "maxvit_tiny_tf_512.in1k"
+BACKBONE_NAME = "convnextv2_tiny.fcmae_ft_in22k_in1k_384"
 
 # Weight decay (L2 regularization) used to prevent overfitting.
 WEIGHT_DECAY = 1e-4
