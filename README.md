@@ -210,7 +210,10 @@ Overall score (100 pts):
 inference or resize masks back correctly.
 * **Allowed libraries?** 
   -  segmentation_models.pytorch: https://segmentation-modelspytorch.readthedocs.io/en/latest/
+
+  ![PSM](https://drive.google.com/uc?export=download&id=1tt4kxIMGpSyYix8GfakreAWmkYPT7tAO)
   - Timm: https://timm.fast.ai/
+  - https://smp.readthedocs.io/en/latest/encoders_timm.html
   - Albumentations: https://albumentations.ai/
   - PyTorch: https://pytorch.org/
   - Ultralytics: https://docs.ultralytics.com/

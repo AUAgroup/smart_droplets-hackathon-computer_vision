@@ -37,6 +37,8 @@ ARCHITECTURE_NAME = "unetplusplus"
 
 # Backbone network used for feature extraction (defined by timm library name).
 # "maxvit_tiny_tf_512.in1k" = MaxViT Tiny pretrained on ImageNet-1k at 512x512 input size.
+# Examples: "convnextv2_tiny.fcmae_ft_in22k_in1k_384, resnet34.a1_in1k"
+# More: https://smp.readthedocs.io/en/latest/encoders_timm.html
 BACKBONE_NAME = "maxvit_tiny_tf_512.in1k"
 
 # Weight decay (L2 regularization) used to prevent overfitting.
