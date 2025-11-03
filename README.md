@@ -4,6 +4,7 @@
 
 ![Annotated Scab Images](https://drive.google.com/uc?export=download&id=1FOck1_QzGyo1Emovvd8wWAJruQ6T19iV)
 
+
 ### 0) Motivation (why this matters)
 
 Conventional blanket spraying misuses pesticides and fertilizers, driving 
@@ -14,8 +15,6 @@ only where needed**. Your mission in this hackathon directly fuels that
 vision—detecting apple scab symptoms at leaf/fruit level so the sprayer 
 can make **precise, traceable, Green-Deal-friendly** decisions in the 
 field.
-
-
 
 
 ---
@@ -60,7 +59,7 @@ field.
 
 ---
 
-## 3) Baseline Code (given) — What “works” and what to improve
+## 3) Baseline Code (given)
 
 **Included features (baseline):**
 
@@ -68,6 +67,9 @@ field.
 * A UNet-like model with `CrossEntropyLoss`.
 * Simple training loop and a basic inference script.
 * IoU evaluation on **val**.
+
+![Output Example](https://drive.google.com/uc?export=download&id=16HaDGGDu2Z1y9XtlA7Zag-8d_I6VNtH6)
+
 ---
 
 ## 4) Rules & Constraints
@@ -97,9 +99,9 @@ accordingly.
   ```
   test/images/IMG_0123.jpg  ->  submission/pred_masks/IMG_0123_mask.png
   ```
-* Size must match corresponding test image.
+* Size must match corresponding test image (512x512).
 
-### B) Demo Notebook (mandatory) and necessary Python modules.
+### B) Demo Notebook (mandatory) and necessary Python modules to run the code.
 
 ### C) Short Report (mandatory, max 3 pages)
 
@@ -116,10 +118,11 @@ Primary metric on hidden test set:
 
 Overall score (100 pts):
 
-* **75 pts** — Test **IoU (Scab)**.
-    - First position (Highest Test IoU): 75 pts
-    - Second position (Highest Test IoU): 65 pts
-    - Thrid position (Highest Test IoU): 60 pts
+* **60 pts** — Test **IoU (Scab)**.
+    - First position (Highest Test IoU): 60 pts
+    - Second position (Second Highest Test IoU): 50 pts
+    - Thrid position (Third Highest Test IoU): 40 pts
+    - Rest: 30 pts.
 * **25 pts** — Improvements in the provided code.
     - **Data**: augmentations for small lesions (random resized crop, flips, 
     rotation, color jitter, Gaussian noise), tile/patch strategy for high-res 
@@ -132,15 +135,20 @@ Overall score (100 pts):
     gradient clipping, AMP (mixed precision) (5 points).
     - **Inference**: test-time augmentation (TTA), sliding window for large 
     images, model ensembling (if time) (5 points).
-
+* **15 pts** — Quality of the report.
 ---
 
 ## 7) FAQ (quick answers)
 
 * **Can we change image sizes?** Yes, but preserve **aspect ratio** during 
 inference or resize masks back correctly.
-* **Allowed libraries?** Common 
-PyTorch/Timm/segmentation_models.pytorch/Albumentations/OpenCV/scikit-image/scikit-learn.
+* **Allowed libraries?** 
+  -  segmentation_models.pytorch: https://segmentation-modelspytorch.readthedocs.io/en/latest/
+  - Timm: https://timm.fast.ai/
+  - Albumentations: https://albumentations.ai/
+  - PyTorch: https://pytorch.org/
+  - Ultralytics: https://docs.ultralytics.com/
+
 * **Ensembles?** Allowed if runtime remains reasonable.
 
 ---
