@@ -222,8 +222,9 @@ inference or resize masks back correctly.
 * **Ensembles?** Allowed if runtime remains reasonable.
 
 ---
-### Download the Predicted Masks
+## 8)  Download the Predicted Masks
 1. After the execution finishes, you will see this message.
+
 ![Execution finishes](https://drive.google.com/uc?export=download&id=18R1qaELZxBQaN8PMG50CqUbG9OH7HIWo)
 
 2. Create a new cell and copy-paste and run this command:
