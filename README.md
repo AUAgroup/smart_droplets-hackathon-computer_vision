@@ -226,11 +226,12 @@ inference or resize masks back correctly.
 1. After the execution finishes, you will see this message.
 ![Execution finishes](https://drive.google.com/uc?export=download&id=18R1qaELZxBQaN8PMG50CqUbG9OH7HIWo)
 
-2. Create a New Cell and copy-paste and run this command:
+2. Create a new cell and copy-paste and run this command:
 ```bash
 !zip -r /content/smart_droplets-hackathon-computer_vision/smart_droplets-scab_hackathon-2_classes-checked-patched_512-splits/test/pred_masks.zip /content/smart_droplets-hackathon-computer_vision/smart_droplets-scab_hackathon-2_classes-checked-patched_512-splits/test/pred_masks
 ```
-3. Download it:
+3. Download the new zip file:
+
 ![Download](https://drive.google.com/uc?export=download&id=1Vqdw1O7OL4nuMF_T9g2L8g3RTk7HvjkA)
 
 
