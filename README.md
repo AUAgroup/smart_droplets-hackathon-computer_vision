@@ -73,6 +73,7 @@ field.
   - Amazon SageMaker Studio Lab: https://aws.amazon.com/sagemaker/
   - Paperspace Gradient: https://www.hyperstack.cloud/ 
   - Microsoft Azure Notebooks: https://visualstudio.microsoft.com/vs/features/notebooks-at-microsoft/
+  - Locally (More challenging)
 
 ![Output Example](https://drive.google.com/uc?export=download&id=16HaDGGDu2Z1y9XtlA7Zag-8d_I6VNtH6)
 
@@ -221,6 +222,18 @@ inference or resize masks back correctly.
 * **Ensembles?** Allowed if runtime remains reasonable.
 
 ---
+### Download the Predicted Masks
+1. After the execution finishes, you will see this message.
+![Execution finishes](https://drive.google.com/uc?export=download&id=18R1qaELZxBQaN8PMG50CqUbG9OH7HIWo)
+
+2. Create a New Cell and copy-paste and run this command:
+```bash
+!zip -r /content/smart_droplets-hackathon-computer_vision/smart_droplets-scab_hackathon-2_classes-checked-patched_512-splits/test/pred_masks.zip /content/smart_droplets-hackathon-computer_vision/smart_droplets-scab_hackathon-2_classes-checked-patched_512-splits/test/pred_masks
+```
+3. Download it:
+![Download](https://drive.google.com/uc?export=download&id=1Vqdw1O7OL4nuMF_T9g2L8g3RTk7HvjkA)
+
+
 
 ### Final note
 
