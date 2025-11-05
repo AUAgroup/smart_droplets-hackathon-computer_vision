@@ -227,7 +227,7 @@ inference or resize masks back correctly.
 
 ![Execution finishes](https://drive.google.com/uc?export=download&id=18R1qaELZxBQaN8PMG50CqUbG9OH7HIWo)
 
-2. Create a new cell and copy-paste and run this command:
+2. Create a new cell, copy-paste and run this command:
 ```bash
 !zip -r /content/smart_droplets-hackathon-computer_vision/smart_droplets-scab_hackathon-2_classes-checked-patched_512-splits/test/pred_masks.zip /content/smart_droplets-hackathon-computer_vision/smart_droplets-scab_hackathon-2_classes-checked-patched_512-splits/test/pred_masks
 ```
